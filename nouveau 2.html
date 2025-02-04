@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta ="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Noir & Blanc</title>
+    <style>
+        /* Global */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            background-color: #000;
+            text-align: center;
+        }
+
+        header {
+            padding: 90px;
+            background-color: #000;
+            border-bottom: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            background-image: url('image.png'); /* Remplacez par le chemin exact vers votre image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        header .logo img {
+            width: 350px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .hamburger {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 4px;
+            background-color: #fff;
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -350px;
+            width: 220px;
+            height: 100%;
+            background-color: #111;
+            padding: 40px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .side-menu.active {
+            left: 0;
+        }
+
+        .side-menu button {
+            width: 100%;
+            margin: 20px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 500px;
+            background-color: #fff;
+            color: #000;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .side-menu button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0px 0px rgba(255, 255, 255, 0.3);
+        }
+
+        .side-menu button:active {
+            transform: scale(0.95);
+        }
+
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 60px auto;
+            max-width: 80%;
+        }
+
+        .product {
+            max-width: 700px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product img {
+            width: 100	%;
+            border-radius: 25px;
+        }
+
+        .product:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #111;
+            font-size: 15px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Sections cachées */
+        section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        /* Détails produit */
+        .product-detail {
+            max-width: 575px;
+            margin: 57px auto;
+            text-align: left;
+        }
+
+        .product-detail img {
+            width: 100%;
+            border-radius: 170px;
+        }
+
+        .product-detail h2 {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .product-detail p {
+            color: #ccc;
+        }
+
+        .btn {
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ddd;
+        }
+
+        /* Tailles */
+        .sizes {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .size-btn {
+            padding: 8px 16px;
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .size-btn:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* Panier */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+
+        .cart-item p {
+            margin: 0;
+        }
+
+        .checkout-btn {
+            background-color: #fff;
+            color: #000;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkout-btn:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- En-tête -->
+	<html lang="fr">
+
+</body>
+</html>
+    <header>
+	
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="logo" onclick="showSection('home')">
+            <img src="vz.gif" alt="Logo VZ">
+        </div>
+    </header>
+
+    <!-- Menu latéral -->
+    <div class="side-menu" id="sideMenu">
+        <button onclick="showSection('home')">Accueil</button>
+        <button onclick="showSection('product-list')">Produits</button>
+        <button onclick="showSection('checkout')">Panier</button>
+    </div>
+
+    <!-- Section Accueil -->
+    <section id="home" class="active">
+       
+        <div class="products">
+            <div class="product" onclick="showDetail('pull')">
+                <img src="pull.gif" alt="Pull Noir">
+                <p>Pull Noir</p>
+            </div>
+            <div class="product" onclick="showDetail('jogging')">
+                <img src="joggo.gif" alt="Jogging Noir">
+                <p> Jogging Noir </p>
+            </div>
+           
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Liste des Produits -->
+    <section id="home">
+        <h1>Nos Produits</h1>
+        <div class="products">
+            <div class="product" onclick="showDetail('pull')">
+                <img src="pull.gif" alt="Pull Noir">
+                <p>Pull Noir</p>
+            </div>
+            <div class="product" onclick="showDetail('jogging')">
+                <img src="joggo.gif" alt="Jogging Noir">
+                <p>Jogging Noir</p>
+            </div>
+         
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Détails Produit -->
+    <section id="product-detail">
+        <div class="product-detail">
+            <img id="detail-img" src="" alt="Détail produit">
+            <h2 id="detail-title"></h2>
+            <p id="detail-desc"></p>
+            <div class="sizes">
+                <button class="size-btn" onclick="selectSize('S')">S</button>
+                <button class="size-btn" onclick="selectSize('M')">M</button>
+                <button class="size-btn" onclick="selectSize('L')">L</button>
+                <button class="size-btn" onclick="selectSize('XL')">XL</button>
+            </div>
+            <button class="btn" onclick="addToCart()">Ajouter au panier</button>
+        </div>
+    </section>
+
+    <!-- Section Panier -->
+    <section id="checkout">
+        <h1>Votre Panier</h1>
+        <div id="cart"></div>
+		<section id="checkout">
+    <h1>Votre Panier</h1>
+    <div id="cart"></div>
+
+    <!-- Formulaire ajouté ici -->
+    <form id="checkout-form">
+       
+
+    
+</section>
+
+        
+
+   <button class="checkout-btn" onclick="finalizePurchase()">Finaliser l'achat</button>
+   
+  
+
+    
+	
+
+  
+
+    <!-- Footer -->
+    <footer>
+        <p>Boutique Noir & Blanc - Tous droits réservés © 2024</p>
+    </footer>
+
+    <script>
+    
+ let cart = [];
+        let selectedSize = '';
+
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            const hamburger = document.querySelector('.hamburger');
+            sideMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll("section").forEach(section => {
+                section.classList.remove("active");
+            });
+            document.getElementById(sectionId).classList.add("active");
+        }
+
+        function showDetail(product) {
+            const detailTitle = document.getElementById('detail-title');
+            const detailDesc = document.getElementById('detail-desc');
+            const detailImg = document.getElementById('detail-img');
+
+            if (product === 'pull') {
+                detailTitle.innerText = 'Pull Noir';
+                detailDesc.innerText = 'Un pull noir élégant et confortable.';
+                detailImg.src = 'pull_avant.jpg';
+            } else if (product === 'jogging') {
+                detailTitle.innerText = 'Jogging Noir';
+                detailDesc.innerText = 'Un jogging noir moderne pour toutes les occasions.';
+                detailImg.src = 'jogging_avant.jpg';
+            } else if (product === 'ensemble') {
+                detailTitle.innerText = 'Ensemble Noir';
+                detailDesc.innerText = 'Un ensemble noir chic et polyvalent.';
+                detailImg.src = 'ensemble.jpg';
+            }
+
+            showSection('product-detail');
+        }
+
+        function selectSize(size) {
+            selectedSize = size;
+            alert(`Taille sélectionnée : ${size}`);
+        }
+
+        function addToCart() {
+            const product = document.getElementById('detail-title').innerText;
+            if (selectedSize === '') {
+                alert('Veuillez sélectionner une taille avant d’ajouter au panier.');
+                return;
+            }
+            cart.push({ product, size: selectedSize });
+            alert(`${product} (${selectedSize}) ajouté au panier.`);
+            selectedSize = '';
+            updateCart();
+            showSection('checkout');
+        }
+
+        function updateCart() {
+            const cartDiv = document.getElementById('cart');
+            cartDiv.innerHTML = '';
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `<p>${item.product} - Taille ${item.size}
+				</p>
+				
+                                      <button onclick="removeFromCart(${index})">Supprimer</button>`;
+                cartDiv.appendChild(cartItem);
+            });
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function finalizePurchase() {
+            if (cart.length === 0) {
+                alert('Votre panier est vide.');
+                return;
+            }
+            alert('Merci pour votre achat !');
+            cart = [];
+            updateCart();
+        }
+		
+    </script>
+	
+		
+	
+</body>
+</html>
